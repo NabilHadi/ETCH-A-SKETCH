@@ -51,6 +51,7 @@ const resetButton = document.querySelector("#reset-button");
 resetButton.addEventListener("click", (e) => {
   squaresArray.forEach((sqaure) => {
     sqaure.style["background-color"] = "transparent";
+    sqaure.setAttribute("data-wear", 0);
   });
 });
 
