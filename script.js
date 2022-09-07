@@ -1,18 +1,38 @@
 const container = document.querySelector(".container");
+const rowsArray = [];
 const squaresArray = [];
 
-for (let i = 0; i < 16; i++) {
-  const square = document.createElement("div");
-  square.setAttribute("data-index", i);
-  square.classList.add("square");
-
-  square.addEventListener("mouseenter", (e) => {
-    e.target.style["background-color"] = "black";
+function createGrid(size) {
+  squaresArray.forEach((square) => {
+    square.remove();
+  });
+  rowsArray.forEach((row) => {
+    row.remove();
   });
 
-  container.appendChild(square);
-  squaresArray.push(square);
+  let index = 0;
+  for (let i = 0; i < size; i++) {
+    const row = document.createElement("div");
+    row.classList.add("row");
+    for (let j = 0; j < size; j++) {
+      const square = document.createElement("div");
+      square.setAttribute("data-index", index);
+      square.classList.add("square");
+
+      square.addEventListener("mouseenter", (e) => {
+        e.target.style["background-color"] = "black";
+      });
+
+      row.appendChild(square);
+      squaresArray.push(square);
+      index++;
+    }
+    container.appendChild(row);
+    rowsArray.push(row);
+  }
 }
+
+createGrid(10);
 
 const resetButton = document.querySelector("#reset-button");
 resetButton.addEventListener("click", (e) => {
@@ -23,22 +43,7 @@ resetButton.addEventListener("click", (e) => {
 
 const newGridButton = document.querySelector("#new-grid-button");
 newGridButton.addEventListener("click", (e) => {
-  const numOfSquares = Number(prompt("Enter number of squares"));
-  if (Number.isNaN(numOfSquares)) return;
-
-  squaresArray.forEach((square) => {
-    square.remove();
-  });
-  for (let i = 0; i < numOfSquares; i++) {
-    const square = document.createElement("div");
-    square.setAttribute("data-index", i);
-    square.classList.add("square");
-
-    square.addEventListener("mouseenter", (e) => {
-      e.target.style["background-color"] = "black";
-    });
-
-    container.appendChild(square);
-    squaresArray.push(square);
-  }
+  const size = Number(prompt("Enter number of squares per side"));
+  if (Number.isNaN(size)) return;
+  createGrid(size);
 });
