@@ -43,7 +43,11 @@ resetButton.addEventListener("click", (e) => {
 
 const newGridButton = document.querySelector("#new-grid-button");
 newGridButton.addEventListener("click", (e) => {
-  const size = Number(prompt("Enter number of squares per side"));
+  const size = Number(prompt("Enter number of squares per side (max is 100)"));
   if (Number.isNaN(size)) return;
+  if (size > 100) {
+    alert("Max size is 100!");
+    return;
+  }
   createGrid(size);
 });
