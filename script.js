@@ -2,6 +2,20 @@ const container = document.querySelector(".container");
 const rowsArray = [];
 const squaresArray = [];
 
+function mouseHoverListener(e) {
+  const wearPrecentage = Number(e.target.getAttribute("data-wear"));
+  function getRandNum(max) {
+    return Math.floor(Math.random() * max) - wearPrecentage;
+  }
+
+  if (wearPrecentage < 256) {
+    e.target.style["background-color"] = `rgba(${getRandNum(256)},${getRandNum(
+      256
+    )},${getRandNum(256)})`;
+    e.target.setAttribute("data-wear", wearPrecentage + 26);
+  }
+}
+
 function createGrid(size) {
   squaresArray.forEach((square) => {
     square.remove();
@@ -17,11 +31,10 @@ function createGrid(size) {
     for (let j = 0; j < size; j++) {
       const square = document.createElement("div");
       square.setAttribute("data-index", index);
+      square.setAttribute("data-wear", 0);
       square.classList.add("square");
 
-      square.addEventListener("mouseenter", (e) => {
-        e.target.style["background-color"] = "black";
-      });
+      square.addEventListener("mouseenter", mouseHoverListener);
 
       row.appendChild(square);
       squaresArray.push(square);
