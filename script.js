@@ -48,6 +48,9 @@ newGridButton.addEventListener("click", (e) => {
   if (size > 100) {
     alert("Max size is 100!");
     return;
+  } else if (size === 0) {
+    alert("Minimum is 1");
+    return;
   }
   createGrid(size);
 });
