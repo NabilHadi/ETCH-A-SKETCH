@@ -2,7 +2,12 @@ const container = document.querySelector(".container");
 const rowsArray = [];
 const squaresArray = [];
 
+let isChangeOnHover = true;
+
 function mouseHoverListener(e) {
+  if (!isChangeOnHover && e.buttons != 1 && e.buttons != 3) {
+    return;
+  }
   const wearPrecentage = Number(e.target.getAttribute("data-wear"));
   function getRandNum(max) {
     return Math.floor(Math.random() * max) - wearPrecentage;
@@ -68,3 +73,17 @@ newGridButton.addEventListener("click", (e) => {
   }
   createGrid(size);
 });
+
+const hoverInput = document.querySelector("#hover-input");
+const clickInput = document.querySelector("#click-input");
+
+function onInputClick(e) {
+  if (e.target === hoverInput) {
+    isChangeOnHover = true;
+  } else if (e.target === clickInput) {
+    isChangeOnHover = false;
+  }
+}
+
+hoverInput.addEventListener("click", onInputClick);
+clickInput.addEventListener("click", onInputClick);
