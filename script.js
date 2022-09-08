@@ -40,6 +40,7 @@ function createGrid(size) {
       square.classList.add("square");
 
       square.addEventListener("mouseenter", mouseHoverListener);
+      square.addEventListener("mousedown", mouseHoverListener);
 
       row.appendChild(square);
       squaresArray.push(square);
