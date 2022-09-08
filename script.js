@@ -5,6 +5,7 @@ const squaresArray = [];
 let isChangeOnHover = true;
 
 function mouseHoverListener(e) {
+  e.preventDefault();
   if (!isChangeOnHover && e.buttons != 1 && e.buttons != 3) {
     return;
   }
