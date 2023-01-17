@@ -2,15 +2,15 @@ const gridContainer = document.querySelector(".grid-container");
 
 function squareEnterHandler(event) {
   const square = event.target;
-  if (event.buttons === 1 || event.buttons === 3) {
-    const blackPercentage = Number(square.getAttribute("data-black"));
+  if (event.buttons === 1 || event.buttons === 3) return;
 
-    if (blackPercentage < 100) {
-      square.setAttribute("data-black", blackPercentage + 10);
-      square.style.backgroundColor = `rgba(0,0,0,${
-        (blackPercentage + 10) / 100
-      })`;
-    }
+  const blackPercentage = Number(square.getAttribute("data-black"));
+
+  if (blackPercentage < 100) {
+    square.setAttribute("data-black", blackPercentage + 10);
+    square.style.backgroundColor = `rgba(0,0,0,${
+      (blackPercentage + 10) / 100
+    })`;
   }
 }
 
@@ -22,13 +22,14 @@ function generateSquares(size) {
       square.classList.add("square");
       square.style.flexBasis = `${100 / size}%`;
       square.setAttribute("data-black", "0");
+      square.setAttribute("ondragstart", "return false");
       square.addEventListener("mouseenter", squareEnterHandler);
       gridContainer.appendChild(square);
     }
   }
 }
 
-generateSquares(50);
+generateSquares(30);
 
 const resetButton = document.querySelector("#resetButton");
 resetButton.addEventListener("click", (event) => {
