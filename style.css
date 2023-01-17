@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.grid-container {
+  border: 3px solid black;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  border: 1px solid rgba(0, 0, 0, 0.253);
+}
