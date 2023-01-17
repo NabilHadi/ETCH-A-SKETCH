@@ -4,12 +4,25 @@
   box-sizing: border-box;
 }
 
+body {
+  text-align: center;
+  padding: 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+  margin-top: 5px;
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+
 .grid-container {
   border: 3px solid black;
   width: 600px;
   height: 600px;
   display: flex;
   flex-wrap: wrap;
+  margin: 10px auto;
 }
 
 .square {
