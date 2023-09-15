@@ -1,3 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: aliceblue;
+}
+
+.container {
+  box-sizing: content-box;
+  display: flex;
+  border: 2px solid black;
+  flex-wrap: wrap;
+  height: 400px;
+  width: 400px;
+}
+
+.square {
+  border: 1px solid rgba(0, 0, 0, 0.134);
+}
+
+.hovered {
+  background: black;
 }
