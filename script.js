@@ -1,9 +1,27 @@
 const container = document.querySelector(".container");
 const newGridBtn = document.querySelector("#new-grid-btn");
+const onHoverInput = document.querySelector("#on_hover_input");
+const onClickInput = document.querySelector("#on_click_input");
+let drawOnHover = true;
 let size = 20;
 
+function onRadiInputChange(e) {
+  if (e.target.checked) {
+    if (e.target.value === "hover") {
+      drawOnHover = true;
+    } else if (e.target.value === "click") {
+      drawOnHover = false;
+    }
+  }
+}
+
+onClickInput.addEventListener("change", onRadiInputChange);
+onHoverInput.addEventListener("change", onRadiInputChange);
+
 function hoverHandler(e) {
-  e.target.classList.add("hovered");
+  if (drawOnHover || e.buttons == 1 || e.buttons == 3) {
+    e.target.classList.add("hovered");
+  }
 }
 
 function newGridBtnClickHandler(e) {
