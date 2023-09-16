@@ -41,6 +41,7 @@ function drawGrid() {
     square.setAttribute("data-index", i);
     square.classList.add("square");
     square.style.width = `${400 / size}px`;
+    square.setAttribute("draggable", "false");
     square.addEventListener("mouseover", hoverHandler);
     container.appendChild(square);
   }
