@@ -15,19 +15,37 @@ function onRadiInputChange(e) {
   }
 }
 
+function getRandomRgbValue() {
+  let r = Math.floor(Math.random() * 256);
+  let b = Math.floor(Math.random() * 256);
+  let g = Math.floor(Math.random() * 256);
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
 onClickInput.addEventListener("change", onRadiInputChange);
 onHoverInput.addEventListener("change", onRadiInputChange);
 
 function hoverHandler(e) {
   if (drawOnHover || e.buttons == 1 || e.buttons == 3) {
-    e.target.classList.add("hovered");
+    e.target.style.background = getRandomRgbValue();
+    let newLightness = Number(e.target.dataset.light) - 10;
+    if (newLightness > -10) {
+      e.target.style.filter = `brightness(${newLightness}%)`;
+      e.target.dataset.light = newLightness;
+    }
   }
 }
 
 function squareMouseDownHandler(e) {
   e.preventDefault();
   if (!drawOnHover) {
-    e.target.classList.add("hovered");
+    e.target.style.background = getRandomRgbValue();
+    let newLightness = Number(e.target.dataset.light) - 10;
+    if (newLightness > -10) {
+      e.target.style.filter = `brightness(${newLightness}%)`;
+      e.target.dataset.light = newLightness;
+    }
   }
   return false;
 }
@@ -53,6 +71,7 @@ function drawGrid() {
     square.addEventListener("mouseover", hoverHandler);
     square.addEventListener("mousedown", squareMouseDownHandler);
     square.addEventListener("dragstart", () => false);
+    square.setAttribute("data-light", "100");
     container.appendChild(square);
   }
 }
