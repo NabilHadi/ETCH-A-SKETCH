@@ -24,6 +24,14 @@ function hoverHandler(e) {
   }
 }
 
+function squareMouseDownHandler(e) {
+  e.preventDefault();
+  if (!drawOnHover) {
+    e.target.classList.add("hovered");
+  }
+  return false;
+}
+
 function newGridBtnClickHandler(e) {
   let newSize = Number(prompt("Enter new grid size (max is 100)"));
   while (newSize < 0 || newSize > 100) {
@@ -43,6 +51,8 @@ function drawGrid() {
     square.style.width = `${400 / size}px`;
     square.setAttribute("draggable", "false");
     square.addEventListener("mouseover", hoverHandler);
+    square.addEventListener("mousedown", squareMouseDownHandler);
+    square.addEventListener("dragstart", () => false);
     container.appendChild(square);
   }
 }
