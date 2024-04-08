@@ -20,7 +20,6 @@ function handleMouseEnter(e) {
   let numOfPasses = Number(e.target.dataset.numOfPasses);
   if (numOfPasses >= 10) return;
   numOfPasses++;
-  console.log(numOfPasses);
   let red = Math.floor(Math.random() * 256) - numOfPasses * 25.6;
   let green = Math.floor(Math.random() * 256) - numOfPasses * 25.6;
   let blue = Math.floor(Math.random() * 256) - numOfPasses * 25.6;
