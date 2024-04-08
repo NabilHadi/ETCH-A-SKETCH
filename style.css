@@ -9,6 +9,8 @@ body {
 #container {
   display: flex;
   flex-wrap: wrap;
+  width: 600px;
+  height: 600px;
 }
 
 #container, .square{
