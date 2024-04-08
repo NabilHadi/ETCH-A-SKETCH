@@ -17,7 +17,10 @@ body.appendChild(newGridBtn);
 body.appendChild(container);
 
 function handleMouseEnter(e) {
-  e.target.style.backgroundColor = "black";
+  let red = Math.floor(Math.random() * 256);
+  let green = Math.floor(Math.random() * 256);
+  let blue = Math.floor(Math.random() * 256);
+  e.target.style.backgroundColor = `rgb(${red},${green}, ${blue})`;
 }
 
 function drawGrid(numOfSquaresPerSide) {
