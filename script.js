@@ -17,10 +17,15 @@ body.appendChild(newGridBtn);
 body.appendChild(container);
 
 function handleMouseEnter(e) {
-  let red = Math.floor(Math.random() * 256);
-  let green = Math.floor(Math.random() * 256);
-  let blue = Math.floor(Math.random() * 256);
-  e.target.style.backgroundColor = `rgb(${red},${green}, ${blue})`;
+  let numOfPasses = Number(e.target.dataset.numOfPasses);
+  if (numOfPasses >= 10) return;
+  numOfPasses++;
+  console.log(numOfPasses);
+  let red = Math.floor(Math.random() * 256) - numOfPasses * 25.6;
+  let green = Math.floor(Math.random() * 256) - numOfPasses * 25.6;
+  let blue = Math.floor(Math.random() * 256) - numOfPasses * 25.6;
+  e.target.style.background = `rgb(${red} ${green} ${blue} / 510%)`;
+  e.target.dataset.numOfPasses = numOfPasses;
 }
 
 function drawGrid(numOfSquaresPerSide) {
@@ -34,6 +39,7 @@ function drawGrid(numOfSquaresPerSide) {
     square.classList.add("square");
     square.style.flex = `0 0 ${squareflexPercentage}%`;
     square.addEventListener("mouseenter", handleMouseEnter);
+    square.dataset.numOfPasses = 0;
     container.appendChild(square);
   }
 }
